@@ -1,8 +1,9 @@
 package kz.sab1tm.juggler;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.*;
 
 import java.util.Objects;
 
@@ -11,13 +12,31 @@ public class MainController {
     @FXML
     private Parent root;
 
+    // left panel's components
+
     @FXML
-    private ComboBox<String> leftActionSelectTheme;
+    private ComboBox<String> themeSelect;
+
+    @FXML
+    private Button requestImport;
+
+    @FXML
+    private TreeView<String> requestsList;
+
+    // right panel's components
+
+    @FXML
+    private ComboBox<String> requestMethodType;
+
+    @FXML
+    public TextField requestPath;
+
 
     @FXML
     private void initialize() {
-        leftActionSelectTheme.setValue("Dark"); // Установите тему по умолчанию
+        themeSelect.setValue("Dark");
     }
+
 
     public void switchToDarkTheme() {
         root.getStylesheets().clear();
@@ -31,11 +50,24 @@ public class MainController {
 
     @FXML
     private void onThemeChange() {
-        String selectedTheme = leftActionSelectTheme.getValue();
+        String selectedTheme = themeSelect.getValue();
         if ("Dark".equals(selectedTheme)) {
             switchToDarkTheme();
         } else if ("Light".equals(selectedTheme)) {
             switchToLightTheme();
         }
+    }
+
+    @FXML
+    private void onRequestMethodChange() {
+    }
+
+    @FXML
+    public void onSendRequest(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Sending request");
+        alert.setHeaderText(null);
+        alert.setContentText(requestMethodType.getValue() + " " + requestPath.getText());
+        alert.showAndWait();
     }
 }
