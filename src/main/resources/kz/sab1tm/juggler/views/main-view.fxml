@@ -7,13 +7,14 @@
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.String?>
-<SplitPane dividerPositions="0.3" xmlns:fx="http://javafx.com/fxml">
+
+<SplitPane fx:id="root" dividerPositions="0.3" xmlns:fx="http://javafx.com/fxml" fx:controller="kz.sab1tm.juggler.MainController">
     <!-- Left side -->
     <VBox>
         <!-- Actions -->
         <AnchorPane>
             <ComboBox fx:id="leftActionSelectTheme" AnchorPane.topAnchor="15.0" AnchorPane.leftAnchor="5.0"
-                      AnchorPane.bottomAnchor="15.0">
+                      AnchorPane.bottomAnchor="15.0" onAction="#onThemeChange">
                 <!-- Themes -->
                 <items>
                     <FXCollections fx:factory="observableArrayList">
@@ -31,7 +32,6 @@
         <!-- API tree -->
         <TreeView fx:id="leftRequestList" maxHeight="1.0"/>
     </VBox>
-
 
     <!-- Right side -->
     <StackPane>

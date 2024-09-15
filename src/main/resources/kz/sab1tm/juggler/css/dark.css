@@ -1,0 +1,53 @@
+.root {
+    -fx-background-color: #2B2B2B;
+    -fx-text-fill: #A9B7C6;
+}
+
+.button {
+    -fx-background-color: #3C3F41;
+    -fx-text-fill: #A9B7C6;
+}
+
+.combo-box {
+    -fx-background-color: #3C3F41;
+    -fx-text-fill: #A9B7C6;
+}
+
+.tree-view {
+    -fx-background-color: #313335;
+    -fx-text-fill: #A9B7C6;
+}
+
+.anchor-pane {
+    -fx-background-color: #2B2B2B;
+}
+
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #4B6EAF;
+}
+
+.split-pane {
+    -fx-divider-color: #3C3F41;
+}
+
+/* Стили для SplitPane */
+.split-pane {
+    -fx-background-color: #2B2B2B; /* Фон всего SplitPane */
+}
+
+.split-pane > .divider {
+    -fx-background-color: #3C3F41; /* Цвет разделителя */
+}
+
+.split-pane > .divider:hover {
+    -fx-background-color: #4B6EAF; /* Цвет разделителя при наведении курсора */
+}
+
+/* Если вы хотите изменить цвет полосы перетаскивания (грипп) */
+.split-pane > .divider .split-pane-divider {
+    -fx-background-color: #3C3F41;
+}
