@@ -53,7 +53,7 @@
                 <value>GET</value>
             </ComboBox>
             <TextField fx:id="requestPath">
-                http://
+                https://api.muftyat.kz/cities/
             </TextField>
             <Button onAction="#onSendRequest">
                 Send

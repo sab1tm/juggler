@@ -3,8 +3,15 @@ package kz.sab1tm.juggler.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TreeView;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class MainController {
@@ -64,10 +71,6 @@ public class MainController {
 
     @FXML
     public void onSendRequest(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Sending request");
-        alert.setHeaderText(null);
-        alert.setContentText(requestMethodType.getValue() + " " + requestPath.getText());
-        alert.showAndWait();
+
     }
 }
