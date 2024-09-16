@@ -9,7 +9,7 @@
 <?import java.lang.String?>
 
 <?import javafx.scene.control.TextField?>
-<SplitPane fx:id="root" dividerPositions="0.3" xmlns:fx="http://javafx.com/fxml" fx:controller="kz.sab1tm.juggler.MainController">
+<SplitPane fx:id="root" dividerPositions="0.3" xmlns:fx="http://javafx.com/fxml" fx:controller="kz.sab1tm.juggler.controllers.MainController">
     <!-- Left side -->
     <VBox>
         <!-- Actions -->

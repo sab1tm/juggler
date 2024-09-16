@@ -1,4 +1,4 @@
-package kz.sab1tm.juggler;
+package kz.sab1tm.juggler.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

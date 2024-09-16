@@ -8,4 +8,6 @@ module kz.sab1tm.juggler {
 
     opens kz.sab1tm.juggler to javafx.fxml;
     exports kz.sab1tm.juggler;
+    exports kz.sab1tm.juggler.controllers;
+    opens kz.sab1tm.juggler.controllers to javafx.fxml;
 }
