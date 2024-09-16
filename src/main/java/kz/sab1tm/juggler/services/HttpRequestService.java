@@ -28,11 +28,11 @@ public class HttpRequestService {
         return executeRequest(request);
     }
 
-    public Request buildRequest(HttpMethodEnum method,
-                                String url,
-                                HttpRequestParams params,
-                                HttpRequestHeaders headers,
-                                String body) {
+    private Request buildRequest(HttpMethodEnum method,
+                                 String url,
+                                 HttpRequestParams params,
+                                 HttpRequestHeaders headers,
+                                 String body) {
 
         HttpUrl finalUrl = buildUrlWithParams(url, method, params);
         Request.Builder requestBuilder = new Request.Builder().url(finalUrl);

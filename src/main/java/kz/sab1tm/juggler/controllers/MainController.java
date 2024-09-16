@@ -7,14 +7,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeView;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import kz.sab1tm.juggler.models.enums.HttpMethodEnum;
+import kz.sab1tm.juggler.services.HttpRequestService;
 
-import java.io.IOException;
 import java.util.Objects;
 
 public class MainController {
+
+    private final HttpRequestService httpRequestService;
+
+    public MainController(HttpRequestService httpRequestService) {
+        this.httpRequestService = httpRequestService;
+    }
 
     @FXML
     private Parent root;
@@ -44,13 +48,12 @@ public class MainController {
         themeSelect.setValue("Dark");
     }
 
-
-    public void switchToDarkTheme() {
+    private void switchToDarkTheme() {
         root.getStylesheets().clear();
         root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/dark.css")).toExternalForm());
     }
 
-    public void switchToLightTheme() {
+    private void switchToLightTheme() {
         root.getStylesheets().clear();
         root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/light.css")).toExternalForm());
     }
@@ -70,7 +73,13 @@ public class MainController {
     }
 
     @FXML
-    public void onSendRequest(ActionEvent actionEvent) {
-
+    private void onSendRequest(ActionEvent actionEvent) {
+        httpRequestService.sendRequest(
+                HttpMethodEnum.valueOf(requestMethodType.getValue()),
+                requestPath.getText(),
+                null,
+                null,
+                null
+        );
     }
 }
