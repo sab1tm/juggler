@@ -9,6 +9,8 @@
 <?import java.lang.String?>
 
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Label?>
 <SplitPane fx:id="root" dividerPositions="0.3" xmlns:fx="http://javafx.com/fxml" fx:controller="kz.sab1tm.juggler.controllers.MainController">
     <!-- Left side -->
     <VBox>
@@ -36,28 +38,36 @@
 
     <!-- Right side -->
     <StackPane>
-        <HBox>
-            <ComboBox fx:id="requestMethodType" AnchorPane.topAnchor="15.0" AnchorPane.leftAnchor="5.0"
-                      AnchorPane.bottomAnchor="15.0" onAction="#onRequestMethodChange">
-                <!-- Theme selector -->
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="GET"/>
-                        <String fx:value="POST"/>
-                        <String fx:value="PUT"/>
-                        <String fx:value="PATCH"/>
-                        <String fx:value="DELETE"/>
-                    </FXCollections>
-                </items>
-                <!-- Selected theme -->
-                <value>GET</value>
-            </ComboBox>
-            <TextField fx:id="requestPath">
-                https://api.muftyat.kz/cities/
-            </TextField>
-            <Button onAction="#onSendRequest">
-                Send
-            </Button>
-        </HBox>
+        <SplitPane dividerPositions="0.3" orientation="VERTICAL">
+            <HBox>
+                <ComboBox fx:id="requestMethodType" AnchorPane.topAnchor="15.0" AnchorPane.leftAnchor="5.0"
+                          AnchorPane.bottomAnchor="15.0" onAction="#onRequestMethodChange">
+                    <!-- Theme selector -->
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="GET"/>
+                            <String fx:value="POST"/>
+                            <String fx:value="PUT"/>
+                            <String fx:value="PATCH"/>
+                            <String fx:value="DELETE"/>
+                        </FXCollections>
+                    </items>
+                    <!-- Selected theme -->
+                    <value>GET</value>
+                </ComboBox>
+                <TextField fx:id="requestPath">
+                    https://api.muftyat.kz/cities/
+                </TextField>
+                <Button onAction="#onSendRequest">
+                    Send
+                </Button>
+            </HBox>
+            <VBox>
+                <Label fx:id="responseStatus"/>
+                <TextArea fx:id="responseBody">
+                </TextArea>
+            </VBox>
+        </SplitPane>
+
     </StackPane>
 </SplitPane>

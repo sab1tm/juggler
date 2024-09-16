@@ -3,10 +3,8 @@ package kz.sab1tm.juggler.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
+import kz.sab1tm.juggler.models.HttpResponse;
 import kz.sab1tm.juggler.models.enums.HttpMethodEnum;
 import kz.sab1tm.juggler.services.HttpRequestService;
 
@@ -15,10 +13,10 @@ import java.util.Objects;
 public class MainController {
 
     private final HttpRequestService httpRequestService;
-
     public MainController(HttpRequestService httpRequestService) {
         this.httpRequestService = httpRequestService;
     }
+
 
     @FXML
     private Parent root;
@@ -40,7 +38,13 @@ public class MainController {
     private ComboBox<String> requestMethodType;
 
     @FXML
-    public TextField requestPath;
+    private TextField requestPath;
+
+    @FXML
+    private Label responseStatus;
+
+    @FXML
+    private TextArea responseBody;
 
 
     @FXML
@@ -74,12 +78,14 @@ public class MainController {
 
     @FXML
     private void onSendRequest(ActionEvent actionEvent) {
-        httpRequestService.sendRequest(
+        HttpResponse httpResponse = httpRequestService.sendRequest(
                 HttpMethodEnum.valueOf(requestMethodType.getValue()),
                 requestPath.getText(),
                 null,
                 null,
                 null
         );
+        responseStatus.setText(httpResponse.getStatus());
+        responseBody.setText(httpResponse.getBody());
     }
 }
