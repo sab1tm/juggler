@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeView;
+import kz.sab1tm.juggler.models.enums.AppThemeEnum;
 import kz.sab1tm.juggler.models.HttpResponse;
 import kz.sab1tm.juggler.models.enums.HttpMethodEnum;
 import kz.sab1tm.juggler.services.HttpRequestService;
@@ -62,27 +63,15 @@ public class MainController {
 
     @FXML
     private void initialize() {
-        themeSelect.setValue("Dark");
-    }
-
-    private void switchToDarkTheme() {
-        root.getStylesheets().clear();
-        root.getStylesheets().add(getResourceAsString("/css/dark.css"));
-    }
-
-    private void switchToLightTheme() {
-        root.getStylesheets().clear();
-        root.getStylesheets().add(getResourceAsString("/css/light.css"));
+        themeSelect.setValue(AppThemeEnum.Light.name());
     }
 
     @FXML
     private void onThemeChange() {
         String selectedTheme = themeSelect.getValue();
-        if ("Dark".equals(selectedTheme)) {
-            switchToDarkTheme();
-        } else if ("Light".equals(selectedTheme)) {
-            switchToLightTheme();
-        }
+        AppThemeEnum theme = AppThemeEnum.valueOf(selectedTheme);
+        root.getStylesheets().clear();
+        root.getStylesheets().add(getResourceAsString(theme.getFilePath()));
     }
 
     @FXML
