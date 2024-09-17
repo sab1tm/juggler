@@ -13,10 +13,8 @@ import kz.sab1tm.juggler.models.HttpResponse;
 import kz.sab1tm.juggler.models.enums.HttpMethodEnum;
 import kz.sab1tm.juggler.services.HttpRequestService;
 
-import java.util.Objects;
-
-import static kz.sab1tm.juggler.utils.HttpStatusUtil.toPrettyStatus;
 import static kz.sab1tm.juggler.utils.JsonUtil.toPrettyString;
+import static kz.sab1tm.juggler.utils.ResourceUtil.getResourceAsString;
 
 public class MainController {
 
@@ -69,12 +67,12 @@ public class MainController {
 
     private void switchToDarkTheme() {
         root.getStylesheets().clear();
-        root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/dark.css")).toExternalForm());
+        root.getStylesheets().add(getResourceAsString("/css/dark.css"));
     }
 
     private void switchToLightTheme() {
         root.getStylesheets().clear();
-        root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/light.css")).toExternalForm());
+        root.getStylesheets().add(getResourceAsString("/css/light.css"));
     }
 
     @FXML

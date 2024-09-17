@@ -11,12 +11,14 @@ import org.picocontainer.MutablePicoContainer;
 
 import java.io.IOException;
 
+import static kz.sab1tm.juggler.utils.ResourceUtil.getResource;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/main.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getResource("/views/main.fxml"));
 
         // instances factory
         MutablePicoContainer pico = new DefaultPicoContainer();
