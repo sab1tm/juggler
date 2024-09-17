@@ -11,6 +11,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.Label?>
+
+<?import javafx.geometry.Insets?>
 <SplitPane fx:id="root" dividerPositions="0.3" xmlns:fx="http://javafx.com/fxml" fx:controller="kz.sab1tm.juggler.controllers.MainController">
     <!-- Left side -->
     <VBox>
@@ -38,11 +40,14 @@
 
     <!-- Right side -->
     <StackPane>
-        <SplitPane dividerPositions="0.3" orientation="VERTICAL">
-            <HBox>
-                <ComboBox fx:id="requestMethodType" AnchorPane.topAnchor="15.0" AnchorPane.leftAnchor="5.0"
-                          AnchorPane.bottomAnchor="15.0" onAction="#onRequestMethodChange">
-                    <!-- Theme selector -->
+        <SplitPane dividerPositions="0.1" orientation="VERTICAL">
+
+            <!-- Request details -->
+            <HBox spacing="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <ComboBox fx:id="requestMethodType" onAction="#onRequestMethodChange">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="GET"/>
@@ -52,26 +57,36 @@
                             <String fx:value="DELETE"/>
                         </FXCollections>
                     </items>
-                    <!-- Selected theme -->
                     <value>GET</value>
                 </ComboBox>
-                <TextField fx:id="requestPath">
+
+                <TextField fx:id="requestPath" HBox.hgrow="ALWAYS">
                     https://api.muftyat.kz/cities/
                 </TextField>
-                <Button onAction="#onSendRequest">
-                    Send
-                </Button>
+
+                <Button text="Send" onAction="#onSendRequest"/>
             </HBox>
-            <VBox>
-                <HBox>
-                    <Label fx:id="responseStatus"/>
-                    <Label fx:id="responseDuration"/>
-                    <Label fx:id="responseSize"/>
+
+            <!-- Response details -->
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <!-- Status -->
+                <HBox spacing="10">
+                    <Label text="Status: "/>
+                    <Label fx:id="responseStatus" text="-"/>
+
+                    <Label text="Duration (ms): "/>
+                    <Label fx:id="responseDuration" text="-"/>
+
+                    <Label text="Size (bytes): "/>
+                    <Label fx:id="responseSize" text="-"/>
                 </HBox>
-                <TextArea fx:id="responseBody">
-                </TextArea>
+
+                <!-- Body -->
+                <TextArea fx:id="responseBody" editable="false" VBox.vgrow="ALWAYS"/>
             </VBox>
         </SplitPane>
-
     </StackPane>
 </SplitPane>

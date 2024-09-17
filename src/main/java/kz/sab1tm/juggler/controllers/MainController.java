@@ -16,7 +16,6 @@ import kz.sab1tm.juggler.services.HttpRequestService;
 import java.util.Objects;
 
 import static kz.sab1tm.juggler.utils.JsonUtil.toPrettyString;
-import static kz.sab1tm.juggler.utils.StringUtil.leftPad;
 
 public class MainController {
 
@@ -100,11 +99,11 @@ public class MainController {
                 null,
                 null
         );
-        responseStatus.setText(leftPad(httpResponse.getStatus(), 15));
+        responseStatus.setText(httpResponse.getStatus());
         responseStatus.setTextFill(httpResponse.getStatusColor());
 
-        responseDuration.setText(leftPad(httpResponse.getDuration().toString() + " ms", 15));
-        responseSize.setText(leftPad(httpResponse.getSize().toString() + " bytes", 15));
+        responseDuration.setText(httpResponse.getDuration().toString());
+        responseSize.setText(httpResponse.getSize().toString());
         responseBody.setText(toPrettyString(httpResponse.getBody()));
     }
 }
