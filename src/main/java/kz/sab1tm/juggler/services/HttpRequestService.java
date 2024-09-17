@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Objects;
 
+import static kz.sab1tm.juggler.utils.HttpStatusUtil.toPrettyStatus;
+
 public class HttpRequestService {
 
     public HttpResponse sendRequest(HttpMethodEnum method,
@@ -48,8 +50,9 @@ public class HttpRequestService {
         long startTime = System.currentTimeMillis();
 
         try (Response okHttpResponse = client.newCall(request).execute()) {
+            response.setDuration(System.currentTimeMillis() - startTime);
             response.setCode(okHttpResponse.code());
-            response.setStatus(okHttpResponse.code() + " " + okHttpResponse.message());
+            response.setStatus(toPrettyStatus(okHttpResponse.code()));
             if (okHttpResponse.isSuccessful()) {
                 response.setStatusColor(Color.GREEN);
             } else {
@@ -64,7 +67,6 @@ public class HttpRequestService {
             throw new RuntimeException(e);
         }
 
-        response.setDuration(System.currentTimeMillis() - startTime);
         return response;
     }
 

@@ -15,6 +15,7 @@ import kz.sab1tm.juggler.services.HttpRequestService;
 
 import java.util.Objects;
 
+import static kz.sab1tm.juggler.utils.HttpStatusUtil.toPrettyStatus;
 import static kz.sab1tm.juggler.utils.JsonUtil.toPrettyString;
 
 public class MainController {
