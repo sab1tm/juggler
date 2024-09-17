@@ -3,18 +3,25 @@ package kz.sab1tm.juggler.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TreeView;
 import kz.sab1tm.juggler.models.HttpResponse;
 import kz.sab1tm.juggler.models.enums.HttpMethodEnum;
 import kz.sab1tm.juggler.services.HttpRequestService;
 
 import java.util.Objects;
 
+import static kz.sab1tm.juggler.utils.JsonUtil.toPrettyString;
 import static kz.sab1tm.juggler.utils.StringUtil.leftPad;
 
 public class MainController {
 
     private final HttpRequestService httpRequestService;
+
     public MainController(HttpRequestService httpRequestService) {
         this.httpRequestService = httpRequestService;
     }
@@ -98,6 +105,6 @@ public class MainController {
 
         responseDuration.setText(leftPad(httpResponse.getDuration().toString() + " ms", 15));
         responseSize.setText(leftPad(httpResponse.getSize().toString() + " bytes", 15));
-        responseBody.setText(httpResponse.getBody());
+        responseBody.setText(toPrettyString(httpResponse.getBody()));
     }
 }

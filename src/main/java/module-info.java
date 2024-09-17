@@ -9,6 +9,7 @@ module kz.sab1tm.juggler {
     requires java.net.http;
     requires static lombok;
     requires picocontainer;
+    requires com.fasterxml.jackson.databind;
 
     opens kz.sab1tm.juggler to javafx.fxml;
     opens kz.sab1tm.juggler.services to javafx.fxml;
