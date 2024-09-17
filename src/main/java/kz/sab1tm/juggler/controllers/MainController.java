@@ -10,6 +10,8 @@ import kz.sab1tm.juggler.services.HttpRequestService;
 
 import java.util.Objects;
 
+import static kz.sab1tm.juggler.utils.StringUtil.leftPad;
+
 public class MainController {
 
     private final HttpRequestService httpRequestService;
@@ -42,6 +44,12 @@ public class MainController {
 
     @FXML
     private Label responseStatus;
+
+    @FXML
+    private Label responseDuration;
+
+    @FXML
+    private Label responseSize;
 
     @FXML
     private TextArea responseBody;
@@ -85,7 +93,11 @@ public class MainController {
                 null,
                 null
         );
-        responseStatus.setText(httpResponse.getStatus());
+        responseStatus.setText(leftPad(httpResponse.getStatus(), 15));
+        responseStatus.setTextFill(httpResponse.getStatusColor());
+
+        responseDuration.setText(leftPad(httpResponse.getDuration().toString() + " ms", 15));
+        responseSize.setText(leftPad(httpResponse.getSize().toString() + " bytes", 15));
         responseBody.setText(httpResponse.getBody());
     }
 }

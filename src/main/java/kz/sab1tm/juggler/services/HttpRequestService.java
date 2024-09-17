@@ -56,6 +56,7 @@ public class HttpRequestService {
                 response.setStatusColor(Color.RED);
             }
             if (okHttpResponse.body() != null) {
+                response.setContentType(okHttpResponse.body().contentType());
                 response.setBody(okHttpResponse.body().string());
                 response.setSize(okHttpResponse.body().contentLength());
             }

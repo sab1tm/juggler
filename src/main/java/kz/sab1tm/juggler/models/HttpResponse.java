@@ -2,6 +2,7 @@ package kz.sab1tm.juggler.models;
 
 import javafx.scene.paint.Color;
 import lombok.Data;
+import okhttp3.MediaType;
 
 @Data
 public class HttpResponse {
@@ -11,4 +12,5 @@ public class HttpResponse {
     private Long duration;
     private Long size;
     private String body;
+    private MediaType contentType;
 }

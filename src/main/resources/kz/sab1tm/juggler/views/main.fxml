@@ -63,7 +63,11 @@
                 </Button>
             </HBox>
             <VBox>
-                <Label fx:id="responseStatus"/>
+                <HBox>
+                    <Label fx:id="responseStatus"/>
+                    <Label fx:id="responseDuration"/>
+                    <Label fx:id="responseSize"/>
+                </HBox>
                 <TextArea fx:id="responseBody">
                 </TextArea>
             </VBox>
