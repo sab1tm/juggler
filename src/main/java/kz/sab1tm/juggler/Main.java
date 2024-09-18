@@ -4,13 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import kz.sab1tm.juggler.controllers.MainController;
-import kz.sab1tm.juggler.services.HttpRequestService;
-import org.picocontainer.DefaultPicoContainer;
-import org.picocontainer.MutablePicoContainer;
 
 import java.io.IOException;
 
+import static kz.sab1tm.juggler.configs.PicoFactory.configurePicoFactory;
 import static kz.sab1tm.juggler.utils.ResourceUtil.getResource;
 
 public class Main extends Application {
@@ -20,12 +17,8 @@ public class Main extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getResource("/views/main.fxml"));
 
-        // instances factory
-        MutablePicoContainer pico = new DefaultPicoContainer();
-        pico.addComponent(HttpRequestService.class);
-        pico.addComponent(MainController.class);
-
-        fxmlLoader.setControllerFactory(pico::getComponent);
+        // set pico as a factory
+        configurePicoFactory(fxmlLoader);
 
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Juggler");
