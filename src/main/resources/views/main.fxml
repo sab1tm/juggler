@@ -75,13 +75,13 @@
                 <!-- Status -->
                 <HBox spacing="10">
                     <Label text="Status: "/>
-                    <Label fx:id="responseStatus" text="-"/>
+                    <Label fx:id="responseStatus" styleClass="bold" text="-"/>
 
                     <Label text="Duration (ms): "/>
-                    <Label fx:id="responseDuration" text="-"/>
+                    <Label fx:id="responseDuration" styleClass="bold" text="-"/>
 
                     <Label text="Size (bytes): "/>
-                    <Label fx:id="responseSize" text="-"/>
+                    <Label fx:id="responseSize" styleClass="bold" text="-"/>
                 </HBox>
 
                 <!-- Body -->
