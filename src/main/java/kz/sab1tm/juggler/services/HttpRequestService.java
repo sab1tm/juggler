@@ -12,6 +12,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,21 +56,23 @@ public class HttpRequestService {
 
         try (Response okHttpResponse = client.newCall(request).execute()) {
             long duration = System.currentTimeMillis() - startTime;
+            response.setStatusColor(Color.RED);
             response.setDuration(String.valueOf(duration));
             response.setCode(okHttpResponse.code());
             response.setStatus(toPrettyStatus(okHttpResponse.code()));
             if (okHttpResponse.isSuccessful()) {
                 response.setStatusColor(Color.GREEN);
-            } else {
-                response.setStatusColor(Color.RED);
-            }
-            if (okHttpResponse.body() != null) {
-                response.setContentType(okHttpResponse.body().contentType());
-                response.setBody(okHttpResponse.body().string());
-                response.setSize(String.valueOf(okHttpResponse.body().contentLength()));
+
+                ResponseBody responseBody = okHttpResponse.body();
+                if (responseBody != null) {
+                    response.setContentType(responseBody.contentType());
+                    String body = responseBody.string();
+                    response.setBody(body);
+                    response.setSize(String.valueOf(body.getBytes().length));
+                }
             }
         } catch (IOException e) {
-            response.setStatus("UnknownHostException");
+            response.setStatus(e.getClass().getSimpleName());
             response.setStatusColor(Color.RED);
             log.error("ERROR: {}", e.getMessage());
         }
