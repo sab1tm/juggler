@@ -12,6 +12,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Map;
@@ -20,6 +22,8 @@ import java.util.Objects;
 import static kz.sab1tm.juggler.utils.HttpStatusUtil.toPrettyStatus;
 
 public class HttpRequestService {
+
+    private static final Logger log = LoggerFactory.getLogger(HttpRequestService.class);
 
     public HttpResponse sendRequest(HttpMethodEnum method,
                                     String url,
@@ -50,7 +54,8 @@ public class HttpRequestService {
         long startTime = System.currentTimeMillis();
 
         try (Response okHttpResponse = client.newCall(request).execute()) {
-            response.setDuration(System.currentTimeMillis() - startTime);
+            long duration = System.currentTimeMillis() - startTime;
+            response.setDuration(String.valueOf(duration));
             response.setCode(okHttpResponse.code());
             response.setStatus(toPrettyStatus(okHttpResponse.code()));
             if (okHttpResponse.isSuccessful()) {
@@ -61,10 +66,12 @@ public class HttpRequestService {
             if (okHttpResponse.body() != null) {
                 response.setContentType(okHttpResponse.body().contentType());
                 response.setBody(okHttpResponse.body().string());
-                response.setSize(okHttpResponse.body().contentLength());
+                response.setSize(String.valueOf(okHttpResponse.body().contentLength()));
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            response.setStatus("UnknownHostException");
+            response.setStatusColor(Color.RED);
+            log.error("ERROR: {}", e.getMessage());
         }
 
         return response;

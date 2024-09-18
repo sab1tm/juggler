@@ -90,8 +90,8 @@ public class MainController {
         responseStatus.setText(httpResponse.getStatus());
         responseStatus.setTextFill(httpResponse.getStatusColor());
 
-        responseDuration.setText(httpResponse.getDuration().toString());
-        responseSize.setText(httpResponse.getSize().toString());
+        responseDuration.setText(httpResponse.getDuration());
+        responseSize.setText(httpResponse.getSize());
         responseBody.setText(toPrettyString(httpResponse.getBody()));
     }
 }

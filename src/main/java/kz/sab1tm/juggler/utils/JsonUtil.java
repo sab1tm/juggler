@@ -10,6 +10,8 @@ public class JsonUtil {
     }
 
     public static String toPrettyString(String body) {
+        if (body == null)
+            return "";
         try {
             ObjectMapper mapper = new ObjectMapper();
             Object json = mapper.readValue(body, Object.class);

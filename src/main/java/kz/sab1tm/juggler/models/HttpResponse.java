@@ -9,8 +9,8 @@ public class HttpResponse {
     private Integer code;
     private String status;
     private Color statusColor;
-    private Long duration;
-    private Long size;
+    private String duration;
+    private String size;
     private String body;
     private MediaType contentType;
 }
