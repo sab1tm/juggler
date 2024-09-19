@@ -17,7 +17,6 @@ public class Main extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getResource("/views/main.fxml"));
 
-        // set pico as a factory
         configurePicoFactory(fxmlLoader);
 
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);

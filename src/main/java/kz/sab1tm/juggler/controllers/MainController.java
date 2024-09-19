@@ -9,25 +9,22 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeView;
-import kz.sab1tm.juggler.models.enums.AppThemeEnum;
 import kz.sab1tm.juggler.models.HttpResponse;
 import kz.sab1tm.juggler.models.enums.HttpMethodEnum;
 import kz.sab1tm.juggler.services.HttpRequestService;
+import kz.sab1tm.juggler.services.UserConfigurationService;
+import lombok.RequiredArgsConstructor;
 
 import static kz.sab1tm.juggler.utils.JsonUtil.toPrettyString;
-import static kz.sab1tm.juggler.utils.ResourceUtil.getResourceAsString;
 
+@RequiredArgsConstructor
 public class MainController {
 
     private final HttpRequestService httpRequestService;
-
-    public MainController(HttpRequestService httpRequestService) {
-        this.httpRequestService = httpRequestService;
-    }
-
+    private final UserConfigurationService userConfigurationService;
 
     @FXML
-    private Parent root;
+    private Parent parent;
 
     // left panel's components
 
@@ -63,15 +60,13 @@ public class MainController {
 
     @FXML
     private void initialize() {
-        themeSelect.setValue(AppThemeEnum.Light.name());
+        themeSelect.setValue(userConfigurationService.getCurrentUITheme().name());
+        userConfigurationService.applyUserUiSettings(parent);
     }
 
     @FXML
     private void onThemeChange() {
-        String selectedTheme = themeSelect.getValue();
-        AppThemeEnum theme = AppThemeEnum.valueOf(selectedTheme);
-        root.getStylesheets().clear();
-        root.getStylesheets().add(getResourceAsString(theme.getFilePath()));
+        userConfigurationService.changeUITheme(parent, themeSelect.getValue());
     }
 
     @FXML
