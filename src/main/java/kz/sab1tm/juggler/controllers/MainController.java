@@ -12,7 +12,7 @@ import javafx.scene.control.TreeView;
 import kz.sab1tm.juggler.models.HttpResponse;
 import kz.sab1tm.juggler.models.enums.HttpMethodEnum;
 import kz.sab1tm.juggler.services.HttpRequestService;
-import kz.sab1tm.juggler.services.UserConfigurationService;
+import kz.sab1tm.juggler.services.UserConfigService;
 import lombok.RequiredArgsConstructor;
 
 import static kz.sab1tm.juggler.utils.JsonUtil.toPrettyString;
@@ -21,7 +21,7 @@ import static kz.sab1tm.juggler.utils.JsonUtil.toPrettyString;
 public class MainController {
 
     private final HttpRequestService httpRequestService;
-    private final UserConfigurationService userConfigurationService;
+    private final UserConfigService userConfigService;
 
     @FXML
     private Parent parent;
@@ -60,13 +60,13 @@ public class MainController {
 
     @FXML
     private void initialize() {
-        themeSelect.setValue(userConfigurationService.getCurrentUITheme().name());
-        userConfigurationService.applyUserUiSettings(parent);
+        themeSelect.setValue(userConfigService.getUserUITheme().name());
+        userConfigService.applyUserUIConfig(parent);
     }
 
     @FXML
     private void onThemeChange() {
-        userConfigurationService.changeUITheme(parent, themeSelect.getValue());
+        userConfigService.setUserUITheme(parent, themeSelect.getValue());
     }
 
     @FXML

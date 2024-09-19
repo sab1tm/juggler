@@ -106,6 +106,13 @@
             <artifactId>logback-classic</artifactId>
             <version>1.5.8</version>
         </dependency>
+
+        <!-- DB -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.3.232</version>
+        </dependency>
     </dependencies>
 
     <build>
