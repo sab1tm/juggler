@@ -85,7 +85,7 @@
                 </HBox>
 
                 <!-- Body -->
-                <TextArea fx:id="responseBody" editable="false" VBox.vgrow="ALWAYS"/>
+                <TextArea fx:id="responseBody" editable="false" styleClass="deep-2" VBox.vgrow="ALWAYS"/>
             </VBox>
         </SplitPane>
     </StackPane>

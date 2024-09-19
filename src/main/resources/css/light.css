@@ -1,3 +1,42 @@
 .bold {
     -fx-font-weight: bold;
 }
+
+.split-pane {
+    -fx-background-color: #26282b;
+    -fx-text-fill: #aaacb2;
+}
+
+.button {
+    -fx-background-color: #26282a;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #393b3f;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+}
+
+.button:hover {
+    -fx-background-color: #3b67eb;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #2f4796;
+    -fx-border-radius: 5px;
+}
+
+.combo-box {
+    -fx-background-color: #393640;
+    -fx-text-fill: #dfe5e0;
+    -fx-border-color: #4f5156;
+    -fx-border-radius: 5px;
+}
+
+.combo-box:hover {
+    -fx-background-color: #3b67eb;
+    -fx-text-fill: #dfe5e0;
+    -fx-border-color: #4573e8;
+    -fx-border-radius: 5px;
+}
+
+.deep-2 {
+    -fx-background-color: #1e1f22;
+    -fx-text-fill: #b9b9b9;
+}
