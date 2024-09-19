@@ -15,10 +15,10 @@
 <?import javafx.geometry.Insets?>
 <SplitPane fx:id="parent" dividerPositions="0.3" xmlns:fx="http://javafx.com/fxml" fx:controller="kz.sab1tm.juggler.controllers.MainController">
     <!-- Left side -->
-    <VBox>
+    <VBox styleClass="padding10">
         <!-- Actions -->
         <AnchorPane>
-            <ComboBox fx:id="themeSelect" AnchorPane.topAnchor="15.0" AnchorPane.leftAnchor="5.0"
+            <ComboBox fx:id="themeSelect" AnchorPane.topAnchor="15.0" AnchorPane.leftAnchor="0.0"
                       AnchorPane.bottomAnchor="15.0" onAction="#onThemeChange">
                 <!-- Theme selector -->
                 <items>
@@ -27,15 +27,13 @@
                         <String fx:value="Light"/>
                     </FXCollections>
                 </items>
-                <!-- Selected theme -->
-                <value>Dark</value>
             </ComboBox>
             <Button fx:id="requestImport" text="Import" AnchorPane.topAnchor="15.0"
                     AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="15.0"/>
         </AnchorPane>
 
         <!-- API tree -->
-        <TreeView fx:id="requestsList" maxHeight="1.0"/>
+        <TreeView fx:id="requestsList" VBox.vgrow="ALWAYS"/>
     </VBox>
 
     <!-- Right side -->
@@ -85,7 +83,7 @@
                 </HBox>
 
                 <!-- Body -->
-                <TextArea fx:id="responseBody" editable="false" styleClass="deep-2" VBox.vgrow="ALWAYS"/>
+                <TextArea fx:id="responseBody" editable="false" VBox.vgrow="ALWAYS"/>
             </VBox>
         </SplitPane>
     </StackPane>
